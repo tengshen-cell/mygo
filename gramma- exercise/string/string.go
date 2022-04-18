@@ -24,9 +24,11 @@ func main() {
 	fmt.Printf("\n")
 
 	encodeRune()
+	decodeRune()
 
 }
 
+// rune -> []byte
 func encodeRune() {
 	var r rune = 0x4E2D
 	fmt.Printf("the unicode charactor is %c\n", r)
@@ -35,4 +37,11 @@ func encodeRune() {
 	// 对 rune 进行utf-8编码
 	_ = utf8.EncodeRune(buf, r)
 	fmt.Printf("utf-8 representation is 0x%X\n", buf)
+}
+
+// []byte -> rune
+func decodeRune() {
+	var buf = []byte{0xE4, 0xB8, 0xAD}
+	r, _ := utf8.DecodeRune(buf)
+	fmt.Printf("the unicode charactor after decoding [0xE4, 0xB8, 0xAD] is %s\n", string(r))
 }
